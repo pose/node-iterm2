@@ -1,0 +1,8 @@
+{
+  "name": "node-iterm2",
+  "description": "Node bindings for Mac OS X iTerm2 (iterm2.com)",
+  "version": "0.0.1"
+  "dependencies": {
+    "NodObjC": "0.0.15"
+  }
+}
