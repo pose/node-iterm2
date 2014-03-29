@@ -1,5 +1,5 @@
 {
-  "name": "node-iterm2",
+  "name": "iterm2",
   "description": "Node bindings for Mac OS X iTerm2 (iterm2.com)",
   "version": "0.0.1",
   "dependencies": {
