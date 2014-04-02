@@ -1,4 +1,8 @@
-var iTerm = require('./index').iTerm;
+var iTerm = require('./index')();
+
+if (!iTerm) {
+  throw new Error('iTerm instance not found. Try again after launching it');
+}
 
 var term = iTerm.currentTerminal();
 

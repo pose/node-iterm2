@@ -6,7 +6,6 @@ $.framework('AppKit');
 
 var pool = $.NSAutoreleasePool('alloc')('init');
 
-var iTerm = $.SBApplication('applicationWithBundleIdentifier', $('com.googlecode.iterm2'));
 
 function wrapArray(nsArray) {
   var count = nsArray('count');
@@ -24,13 +23,13 @@ function wrapSession (session) {
     write: function (text) {
       session('writeContentsOfFile', null, 'text', $(text));
     }
-  }
+  };
 }
 
 function wrapTerminal (terminal) {
   return {
     currentSession: function () {
-      return currentSession = wrapSession(terminal('currentSession'));
+      return wrapSession(terminal('currentSession'));
     },
     sessions: function () {
       return wrapArray(terminal('sessions')).map(wrapSession);
@@ -46,8 +45,14 @@ function wrapTerminal (terminal) {
   };
 }
 
-module.exports = {
-  iTerm: {
+module.exports = function () {
+  var iTerm = $.SBApplication('applicationWithBundleIdentifier',
+                              $('com.googlecode.iterm2'));
+  if (!iTerm) {
+    return null;
+  }
+
+  return {
     currentTerminal: function () {
       var currentTerminal = iTerm('currentTerminal');
       return wrapTerminal(currentTerminal);
