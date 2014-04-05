@@ -6,7 +6,6 @@ $.framework('AppKit');
 
 var pool = $.NSAutoreleasePool('alloc')('init');
 
-
 function wrapArray(nsArray) {
   var count = nsArray('count');
   var a = [];
@@ -52,6 +51,10 @@ module.exports = function () {
     return null;
   }
 
+  if (iTerm.methods().indexOf('currentTerminal') === -1) {
+    throw new Error('iTerm instance does not contain "currentTerminal" method');
+  }
+
   return {
     currentTerminal: function () {
       var currentTerminal = iTerm('currentTerminal');
@@ -60,6 +63,7 @@ module.exports = function () {
     terminals: function () {
       return wrapArray(iTerm('terminals')).map(wrapTerminal);
     }
-  }
+  };
 };
+
 
