@@ -2,6 +2,8 @@
 
 Script iTerm2 (a Mac OS X terminal) using Node.js
 
+![node-iterm](https://cloud.githubusercontent.com/assets/419703/2680898/9516bb6a-c187-11e3-9500-95def112df29.gif)
+
 ## Install
 
 ```sh
